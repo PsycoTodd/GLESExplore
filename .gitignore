@@ -33,8 +33,6 @@ Thumbs.db
 gradle.properties
 build
 
-libs
 obj
-assets
 drawable-temp
 import-summary.txt

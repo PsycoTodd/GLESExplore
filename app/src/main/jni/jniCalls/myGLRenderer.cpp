@@ -15,47 +15,46 @@
  */
 
 #include <jni.h>
-#include "glesNative.h"
-
+#include "cornerClass.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern GLESNative *gGlesObject;
+extern CornerClass *gCornerObject;
 
 JNIEXPORT void JNICALL
-Java_com_anandmuralidhar_glescontextandroid_MyGLRenderer_DrawFrameNative(JNIEnv *env,
-                                                                         jobject instance) {
+Java_com_anandmuralidhar_cornerdetectandroid_MyGLRenderer_DrawFrameNative(JNIEnv *env,
+                                                                      jobject instance) {
 
-    if (gGlesObject == NULL) {
+    if (gCornerObject == NULL) {
         return;
     }
-    gGlesObject->Render();
+    gCornerObject->Render();
 
 }
 
 JNIEXPORT void JNICALL
-Java_com_anandmuralidhar_glescontextandroid_MyGLRenderer_SurfaceCreatedNative(JNIEnv *env,
-                                                                              jobject instance) {
+Java_com_anandmuralidhar_cornerdetectandroid_MyGLRenderer_SurfaceCreatedNative(JNIEnv *env,
+                                                                           jobject instance) {
 
-    if (gGlesObject == NULL) {
+    if (gCornerObject == NULL) {
         return;
     }
-    gGlesObject->PerformGLInits();
+    gCornerObject->PerformGLInits();
 
 }
 
 JNIEXPORT void JNICALL
-Java_com_anandmuralidhar_glescontextandroid_MyGLRenderer_SurfaceChangedNative(JNIEnv *env,
-                                                                              jobject instance,
-                                                                              jint width,
-                                                                              jint height) {
+Java_com_anandmuralidhar_cornerdetectandroid_MyGLRenderer_SurfaceChangedNative(JNIEnv *env,
+                                                                           jobject instance,
+                                                                           jint width,
+                                                                           jint height) {
 
-    if (gGlesObject == NULL) {
+    if (gCornerObject == NULL) {
         return;
     }
-    gGlesObject->SetViewport(width, height);
+    gCornerObject->SetViewport(width, height);
 
 }
 

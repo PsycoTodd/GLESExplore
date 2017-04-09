@@ -1,9 +1,14 @@
-GLESContextAndroid
-==================
-This project sets up GLES context in Android, creates a native object, and renders to the display from native code. The rendering call simply changes the screen color to blue. OpenGL ES and GLSL versions are displayed on the screen using Java. We use an AsyncTask to communicate across GL and UI threads in Android.
+CornerDetectAndroid
+===================
+This project focuses on a close integration between the device camera, OpenCV, and OpenGL ES. 
+- It processes images from device’s camera in native code.
+- Then detects feature points using OpenCV’s ORB detector and highlights them in the image.
+- Finally renders the image with GLES.
 
 A blog describing this project:
-http://www.anandmuralidhar.com/blog/android/gles-context/
+http://www.anandmuralidhar.com/blog/android/corners
+
+The project will run on devices with ABI armeabi-v7a.
 
 License
 -------
