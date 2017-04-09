@@ -8,13 +8,14 @@
 #include "myShader.h"
 
 #include <myJNIHelper.h>
+#include <string>
 
 
 /**
  * Try to initialize our graphics resoruce and gl resources here.
  */
 Teapot::Teapot() {
-
+    _loadSuccess = false;
     InitShaders();
 
     setVerts();
@@ -25,6 +26,7 @@ Teapot::Teapot() {
     LoadTexture();
 
     CheckGLError("Teaport::Init");
+    _loadSuccess = true;
 }
 
 /**
@@ -91,10 +93,59 @@ Teapot::LoadTexture() {
 
 
 }
+
+/*template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream os ;
+    os << value ;
+    return os.str() ;
+}
+ */
+
 void
-Teapot::Render(glm::mat4 *MVP)
+Teapot::Render(glm::mat4 *mvpMat)
 {
     // Draw the teaport with texture.
+    if(_loadSuccess == false)
+    {
+        return;
+    }
+
+    // Make sure we use the correct vertex and fragment shader.
+    glUseProgram(_shaderProgramID);
+    //Set our shader variables.
+    glUniformMatrix4fv(_mvpLocation, 1, GL_FALSE, (const GLfloat*) mvpMat);
+    glActiveTexture(GL_TEXTURE0);
+    glUniform1i(_textureSamplerLocation, 0);
+    CheckGLError("Teapot: setTextureResource()");
+
+    // Now we start to binding our resources.
+    // 1. Binding our texture.
+    glBindTexture(GL_TEXTURE_2D, _textureID);
+    CheckGLError("Teapot: 1");
+    // 2. Indices buffer
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indBuffer);
+    CheckGLError("Teapot: 2");
+    // 3. Vertices buffer
+    glBindBuffer(GL_ARRAY_BUFFER, _vBuffer);
+    glEnableVertexAttribArray(_vertexAttribute);
+    glVertexAttribPointer(_vertexAttribute, 3, GL_FLOAT, 0, 0, 0);
+    CheckGLError("Teapot: 3");
+    // 3.5 ignore normal first.
+    // 4. UV
+    glBindBuffer(GL_ARRAY_BUFFER, _uvBuffer);
+    glEnableVertexAttribArray(_vertexUVAttribute);
+    glVertexAttribPointer(_vertexUVAttribute, 2, GL_FLOAT, 0, 0, 0);
+    CheckGLError("Teapot: 4");
+
+    glDrawElements(GL_TRIANGLES, _verticesNumber, GL_UNSIGNED_INT, 0);
+
+    // Release the buffer.
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+
 
 }
 

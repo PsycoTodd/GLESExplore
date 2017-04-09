@@ -6,5 +6,5 @@ uniform sampler2D textureSampler;
 
 void main()
 {
-    gl_FragColor.rgb = texture2D( textureSampler, textureCoords ).rgb;
+   gl_FragColor.rgb = texture2D( textureSampler, textureCoords ).rgb;
 }

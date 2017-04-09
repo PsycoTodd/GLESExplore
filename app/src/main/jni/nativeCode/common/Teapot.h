@@ -24,6 +24,7 @@ private:
     void InitShaders();
     void LoadTexture();
 private:
+    bool _loadSuccess;
     GLuint _textureID; // Try to save the openGL texture resources.
     GLuint  _vertexAttribute, _vertexUVAttribute;     // attributes for shader variables
     GLuint  _shaderProgramID;

@@ -92,7 +92,7 @@ void CornerClass::Render() {
     }
     newCameraImage = false;
     cameraMutex.unlock();
-    back->Render();
+    //back->Render();
     glm::mat4 mvpMat = _myGLCamera->GetMVP();
     _teapot->Render(&mvpMat);
     CheckGLError("CornerClass::Render");
