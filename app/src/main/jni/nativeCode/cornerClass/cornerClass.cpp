@@ -43,6 +43,14 @@ CornerClass::~CornerClass() {
     }
 }
 
+void CornerClass::SetCameraParams(int cameraPreviewWidth, int cameraPreviewHeight, float cameraFOV)
+{
+    _cameraPreviewWidth = cameraPreviewWidth;
+    _cameraPreviewHeight = cameraPreviewHeight;
+    _cameraFOV = cameraFOV;
+}
+
+
 /**
  * Perform inits, create objects for detecting corners and rendering image
  */
@@ -56,14 +64,18 @@ void CornerClass::PerformGLInits() {
 
     CheckGLError("CornerClass::PerformGLInits");
 
+    // Todd: Need to be done here since we need OpenGL context.
     _teapot = new Teapot();
 
     CheckGLError("Initialize the teapot");
+
+    _myGLCamera = new MyGLCamera(_cameraFOV, 0);
 
     newCameraImage = false;
     initsDone = true;
 
 }
+
 
 
 /**
@@ -81,8 +93,8 @@ void CornerClass::Render() {
     newCameraImage = false;
     cameraMutex.unlock();
     back->Render();
-    glm::mat4 mvpMat = myGLCamera
-    _teapot->Render()
+    glm::mat4 mvpMat = _myGLCamera->GetMVP();
+    _teapot->Render(&mvpMat);
     CheckGLError("CornerClass::Render");
 
 }
@@ -95,7 +107,8 @@ void CornerClass::SetViewport(int width, int height) {
     screenHeight = height;
     screenWidth = width;
     glViewport(0, 0, width, height);
-    CheckGLError("Cube::SetViewport");
+    CheckGLError("CornerClass::SetViewport");
+    _myGLCamera->SetAspectRatio((float)1280/720);
 
 }
 

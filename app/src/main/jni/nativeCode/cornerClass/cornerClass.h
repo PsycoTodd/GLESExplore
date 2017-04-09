@@ -37,6 +37,7 @@ public:
     void    SetViewport(int width, int height);
     void    ProcessCameraImage(cv::Mat cameraRGBImage, int mPreview_width, int mPreview_height);
     void    SetCameraPreviewDims(int cameraPreviewWidth, int cameraPreviewHeight);
+    void    SetCameraParams(int cameraPreviewWidth, int cameraPreviewHeight, float cameraFOV);
 
 private:
     void    DetectAndHighlightCorners();
@@ -51,7 +52,12 @@ private:
     std::mutex cameraMutex;
     cv::Ptr<cv::Feature2D> cornerDetector;
     std::vector<cv::KeyPoint> keyPoints;
+
+    // Todd defined variables for model and our OpenGL rendering.
     Teapot* _teapot;
+    MyGLCamera* _myGLCamera;
+    float   _cameraFOV;
+    int     _cameraPreviewWidth, _cameraPreviewHeight;
 };
 
 #endif //CORNERCLASS_H
