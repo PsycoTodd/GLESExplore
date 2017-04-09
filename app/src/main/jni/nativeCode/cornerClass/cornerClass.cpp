@@ -55,8 +55,14 @@ void CornerClass::PerformGLInits() {
     back = new BackTexture(cameraPreviewWidth, cameraPreviewHeight);
 
     CheckGLError("CornerClass::PerformGLInits");
+
+    _teapot = new Teapot();
+
+    CheckGLError("Initialize the teapot");
+
     newCameraImage = false;
     initsDone = true;
+
 }
 
 
@@ -75,6 +81,8 @@ void CornerClass::Render() {
     newCameraImage = false;
     cameraMutex.unlock();
     back->Render();
+    glm::mat4 mvpMat = myGLCamera
+    _teapot->Render()
     CheckGLError("CornerClass::Render");
 
 }

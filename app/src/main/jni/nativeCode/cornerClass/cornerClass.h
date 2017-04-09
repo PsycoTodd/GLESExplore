@@ -20,13 +20,13 @@
 #include "myLogger.h"
 #include "myGLFunctions.h"
 #include "myGLCamera.h"
-#include "assimpLoader.h"
 #include <sstream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <mutex>
 #include <backTexture.h>
+#include <Teapot.h>
 
 class CornerClass {
 public:
@@ -51,6 +51,7 @@ private:
     std::mutex cameraMutex;
     cv::Ptr<cv::Feature2D> cornerDetector;
     std::vector<cv::KeyPoint> keyPoints;
+    Teapot* _teapot;
 };
 
 #endif //CORNERCLASS_H
