@@ -65,7 +65,9 @@ void CornerClass::PerformGLInits() {
     CheckGLError("CornerClass::PerformGLInits");
 
     // Todd: Need to be done here since we need OpenGL context.
-    _teapot = new Teapot();
+    //_teapot = new Teapot();
+
+    myCube = new MyCube();
 
     CheckGLError("Initialize the teapot");
 
@@ -93,8 +95,9 @@ void CornerClass::Render() {
     newCameraImage = false;
     cameraMutex.unlock();
     //back->Render();
-    glm::mat4 mvpMat = _myGLCamera->GetMVP();
-    _teapot->Render(&mvpMat);
+    //glm::mat4 mvpMat = _myGLCamera->GetMVP();
+    //_teapot->Render(&mvpMat);
+    myCube->Render();
     CheckGLError("CornerClass::Render");
 
 }

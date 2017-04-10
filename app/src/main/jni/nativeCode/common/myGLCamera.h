@@ -32,7 +32,7 @@ public:
     MyGLCamera(
             float FOV = 45,          // in degrees
             float zPosition = 10,    // camera's location on Z axis
-            float nearPlaneDistance = 1f, // as large as possible
+            float nearPlaneDistance = 1.f, // as large as possible
             float farPlaneDistance = 2000.0f // as small as possible
     );
     void        SetModelPosition(std::vector<float> modelPosition);

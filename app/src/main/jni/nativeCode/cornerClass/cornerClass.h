@@ -27,6 +27,7 @@
 #include <mutex>
 #include <backTexture.h>
 #include <Teapot.h>
+#include "MyCube.h"
 
 class CornerClass {
 public:
@@ -55,6 +56,7 @@ private:
 
     // Todd defined variables for model and our OpenGL rendering.
     Teapot* _teapot;
+    MyCube* myCube;
     MyGLCamera* _myGLCamera;
     float   _cameraFOV;
     int     _cameraPreviewWidth, _cameraPreviewHeight;

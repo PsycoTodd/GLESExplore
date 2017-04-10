@@ -154,13 +154,13 @@ Teapot::Render(glm::mat4 *mvpMat)
 void
 Teapot::setVerts()
 {
-    _verticesNumber = sizeof(TEAPOT_VERTS) / (sizeof(float) * 3);
+    _verticesNumber = TEAPOT_VERTS.size() / 3;
 
     // Now we try to generate OpenGL buffer.
     GLuint buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(TEAPOT_VERTS), &TEAPOT_VERTS[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _verticesNumber * 3, &TEAPOT_VERTS[0], GL_STATIC_DRAW);
     _vBuffer = buffer;
 
 }
@@ -183,7 +183,7 @@ Teapot::setNorms()
     GLuint buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) *  2 * _verticesNumber, &TEAPOT_TEX_COORDS[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) *  3 * _verticesNumber, &TEAPOT_TEX_COORDS[0], GL_STATIC_DRAW);
     _uvBuffer = buffer;
 }
 
